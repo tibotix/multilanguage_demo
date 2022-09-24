@@ -5,13 +5,21 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 project(Calculator)
 
+
+
 file(GLOB calculator_sources "src/*.cpp")
 # Note: To build a shared library, use -DBUILD_SHARED_LIBS=ON when configuring.
 add_library(calculator ${calculator_sources})
 target_include_directories(calculator PUBLIC include)
+set_property(
+    TARGET calculator PROPERTY PUBLIC_HEADER
+    "include/calc.h"
+    "include/errors.h"    
+)
 install(TARGETS calculator 
         RUNTIME DESTINATION bin COMPONENT Runtime
-        LIBRARY DESTINATION lib COMPONENT Runtime)
+        LIBRARY DESTINATION lib COMPONENT Runtime
+        PUBLIC_HEADER DESTINATION include/calc COMPONENT Development)
 
 
 if(BUILD_TESTING AND (PROJECT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR))

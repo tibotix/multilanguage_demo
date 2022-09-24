@@ -1,12 +1,13 @@
 package main
 
-// ( if libcalculator and libcalculator_c are already installed, this works )
-// ( otherwise we an manually build from the c bindings directory and )
-// ( include the directory for linking with: -L../c/build/ )
+// if libcalculator and libcalculator_c are already installed, this works
+// otherwise we an manually build from the c bindings directory and
+// include the following flags:
+// CFLAGS: -I../c/include
+// LDFLAGS: -L../c/build/
 
-// #cgo CFLAGS: -I../c/include
 // #cgo LDFLAGS: -lcalculator_c
-// #include "calc_c.h"
+// #include <calc/calc_c.h>
 import "C"
 
 type calculator struct {
