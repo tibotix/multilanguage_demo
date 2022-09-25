@@ -104,6 +104,11 @@ class CMakeBuild(build_ext):
             archs = re.findall(r"-arch (\S+)", os.environ.get("ARCHFLAGS", ""))
             if archs:
                 cmake_args += ["-DCMAKE_OSX_ARCHITECTURES={}".format(";".join(archs))]
+        if sys.platform.startswith("win"):
+            cmake_args += [
+                "-DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=TRUE",
+                f"-DCMAKE_RUNTIME_OUTPUT_DIRECTORY_{cfg.upper()}={extdir}"
+            ]
 
         # Set CMAKE_BUILD_PARALLEL_LEVEL to control the parallel build level
         # across all generators.
@@ -120,13 +125,6 @@ class CMakeBuild(build_ext):
 
         subprocess.check_call(["cmake", ext.sourcedir] + cmake_args, cwd=build_temp)
         subprocess.check_call(["cmake", "--build", "."] + build_args, cwd=build_temp)
-
-        if sys.platform.startswith("win"):
-            base_lib_path = os.path.join(build_temp, "base_lib")
-            for file in os.listdir(base_lib_path):
-                if file.endswith(".dll"):
-                    shutil.copyfile(os.path.join(base_lib_path, file), os.path.join(extdir, file))
-
 
 
 
