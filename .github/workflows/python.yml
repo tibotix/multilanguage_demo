@@ -2,8 +2,9 @@ name: calculator python bindings test
 
 on:
   pull_request:
+    branches: ["master", "release", "test-me*", "python-bindings"]
   push:
-    branches: ["master", "test-me*", "python-bindings"]
+    branches: ["master", "release", "test-me*"]
 
 
 jobs:
