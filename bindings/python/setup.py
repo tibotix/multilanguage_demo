@@ -140,6 +140,6 @@ setup(
     ext_modules=[CMakeExtension("calculatorpy")],
     cmdclass={"build_ext": CMakeBuild},
     zip_safe=False,
-    extras_require={},
+    extras_require={"test": ["pytest"]},
     python_requires=">=3.8",
 )
