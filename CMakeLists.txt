@@ -33,7 +33,6 @@ if(BUILD_TESTING AND (PROJECT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR))
     if(CODE_COVERAGE)
         include(CodeCoverage)
         append_coverage_compiler_flags()
-        # we need to turn off optimization for non-skewed coverage reports
         target_compile_options(calculator PUBLIC -O0)
 
         setup_target_for_coverage_gcovr_xml(
