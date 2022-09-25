@@ -4,7 +4,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 project(Calculator)
-
+list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/CMakeModules")
 
 
 file(GLOB calculator_sources "src/*.cpp")
@@ -30,4 +30,17 @@ if(BUILD_TESTING AND (PROJECT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR))
     target_include_directories(calculator_test PRIVATE extern/catch2/include)
     target_link_libraries(calculator_test PRIVATE calculator)
     add_test(NAME all_tests COMMAND calculator_test)
+    if(CODE_COVERAGE)
+        include(CodeCoverage)
+        append_coverage_compiler_flags()
+        # we need to turn off optimization for non-skewed coverage reports
+        target_compile_options(calculator PUBLIC -O0)
+
+        setup_target_for_coverage_gcovr_xml(
+            NAME calculator_test_coverage
+            EXECUTABLE calculator_test
+            DEPENDENCIES calculator_test calculator
+            BASE_DIRECTORY "src/"
+        )
+    endif()
 endif()
