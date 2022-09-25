@@ -21,4 +21,5 @@ jobs:
           cmake .. -DBUILD_SHARED_LIBS=ON -DBUILD_TESTING=ON
           cmake --build .
       - name: Run tests
+        working-directory: build
         run: ctest
