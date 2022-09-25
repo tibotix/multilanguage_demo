@@ -2,15 +2,13 @@ name: calculator python bindings test
 
 on:
   pull_request:
-    branches: ["master", "python-bindings"]
   push:
-    branches: ["master", "test-me*"]
+    branches: ["master", "test-me*", "python-bindings"]
 
 
 jobs:
-  python_test:
+  python_tests:
     strategy:
-      fail-fast: true
       matrix:
         python: ["3.8", "3.9", "3.10"]
         os: [windows-latest, ubuntu-latest]
@@ -18,6 +16,8 @@ jobs:
     runs-on: ${{matrix.os}}
     steps:
       - uses: actions/checkout@v3
+        with:
+          submodules: recursive
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
