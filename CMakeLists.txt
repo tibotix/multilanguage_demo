@@ -24,9 +24,10 @@ install(TARGETS calculator
 
 if(BUILD_TESTING AND (PROJECT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR))
     include(CTest)
-    file(GLOB test_sources "tests/*_test.cpp")
+    file(GLOB test_sources "tests/test_*.cpp")
     add_executable(calculator_test tests/main.cpp ${test_sources})
     target_include_directories(calculator_test PUBLIC include)
+    target_include_directories(calculator_test PRIVATE extern/catch2/include)
     target_link_libraries(calculator_test PRIVATE calculator)
     add_test(NAME all_tests COMMAND calculator_test)
 endif()
