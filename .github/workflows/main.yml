@@ -36,7 +36,7 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           flags: unittests
-          files: ${{runner.workspace}}/build/RAFFY_TEST_COVERAGE.xml
+          files: ${{runner.workspace}}/build/calculator_test_coverage.xml
           fail_ci_if_error: true
           verbose: true
           dry_run: true
