@@ -96,6 +96,7 @@ class CMakeBuild(build_ext):
                 cmake_args += [
                     f"-DCMAKE_LIBRARY_OUTPUT_DIRECTORY_{cfg.upper()}={extdir}",
                     f"-DCMAKE_ARCHIVE_OUTPUT_DIRECTORY_{cfg.upper()}={extdir}"
+                    f"-DCMAKE_RUNTIME_OUTPUT_DIRECTORY_{cfg.upper()}={extdir}"
                 ]
                 build_args += ["--config", cfg]
 
@@ -107,7 +108,6 @@ class CMakeBuild(build_ext):
         if sys.platform.startswith("win"):
             cmake_args += [
                 "-DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=TRUE",
-                f"-DCMAKE_RUNTIME_OUTPUT_DIRECTORY_{cfg.upper()}={extdir}"
             ]
 
         # Set CMAKE_BUILD_PARALLEL_LEVEL to control the parallel build level
