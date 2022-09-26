@@ -24,9 +24,9 @@ jobs:
         with:
           go-version: ${{matrix.go}}
       - name: Build required c bindings
-        working-directory: ${{runner.workspace}}/bindings/c
+        working-directory: ${{runner.workspace}}
         run: |
-          cmake -Bbuild -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON $GITHUB_WORKSPACE
+          cmake -Bbuild -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON $GITHUB_WORKSPACE/bindings/c
           cmake --build build
           sudo cmake --install build
       - name: Run tests
