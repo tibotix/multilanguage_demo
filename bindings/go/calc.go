@@ -1,4 +1,4 @@
-package main
+package calc
 
 // if libcalculator and libcalculator_c are already installed, this works
 // otherwise we an manually build from the c bindings directory and
@@ -10,39 +10,39 @@ package main
 // #include <calc/calc_c.h>
 import "C"
 
-type calculator struct {
+type Calculator struct {
 	_c *C.calculator_t
 }
 
-func calculator_create(init_value float64) *calculator {
+func Calculator_create(init_value float64) *Calculator {
 	c := C.calculator_create(C.double(init_value))
-	return &calculator{_c: c}
+	return &Calculator{_c: c}
 }
 
-func (c *calculator) add(a float64) *calculator {
+func (c *Calculator) add(a float64) *Calculator {
 	C.calculator_add(c._c, C.double(a))
 	return c
 }
 
-func (c *calculator) sub(a float64) *calculator {
+func (c *Calculator) sub(a float64) *Calculator {
 	C.calculator_sub(c._c, C.double(a))
 	return c
 }
 
-func (c *calculator) mul(a float64) *calculator {
+func (c *Calculator) mul(a float64) *Calculator {
 	C.calculator_mul(c._c, C.double(a))
 	return c
 }
 
-func (c *calculator) div(a float64) *calculator {
+func (c *Calculator) div(a float64) *Calculator {
 	C.calculator_div(c._c, C.double(a))
 	return c
 }
 
-func (c *calculator) result() float64 {
+func (c *Calculator) result() float64 {
 	return float64(C.calculator_result(c._c))
 }
 
-func (c *calculator) destroy() {
+func (c *Calculator) destroy() {
 	C.calculator_destroy(c._c)
 }
