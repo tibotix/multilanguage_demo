@@ -22,10 +22,6 @@ install(TARGETS calculator_c
         LIBRARY DESTINATION lib COMPONENT Runtime
         PUBLIC_HEADER DESTINATION include/calc COMPONENT Development)
 
-if(WIN32)
-    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
-endif()
-
 if(BUILD_TESTING AND (PROJECT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR))
     include(CTest)
     # Now we can go and use the c adapter lib in a c file

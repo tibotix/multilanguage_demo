@@ -7,6 +7,10 @@ project(Calculator)
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/CMakeModules")
 
 
+if(WIN32)
+    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
+endif()
+
 file(GLOB calculator_sources "src/*.cpp")
 # Note: To build a shared library, use -DBUILD_SHARED_LIBS=ON when configuring.
 add_library(calculator ${calculator_sources})
