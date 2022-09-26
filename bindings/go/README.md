@@ -10,3 +10,6 @@ CGO_LDFLAGS='-L "C:\\Program Files (x86)\\Calculator\\bin"'
 CGO_CFLAGS='-I "C:\\Program Files (x86)\\Calculator\\include"'
 
 Then add the folder with the libraries (${PATH_TO_CALCULATOR_BIN}) to the PATH envvar and it works.
+
+
+To use this module, use `go get -u github.com/tibotix/multilanguage_demo/bindings/go`
