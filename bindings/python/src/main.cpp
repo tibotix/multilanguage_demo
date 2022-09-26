@@ -1,14 +1,13 @@
 
 #include <pybind11/pybind11.h>
 
-#define STRINGIFY(x) #x
+#define STRINGIFY(x)       #x
 #define MACRO_STRINGIFY(x) STRINGIFY(x)
 
-void generate_calculator_bindings(pybind11::module_ &m);
-void generate_errors_bindings(pybind11::module_ &m);
+void generate_calculator_bindings(pybind11::module_& m);
+void generate_errors_bindings(pybind11::module_& m);
 
-PYBIND11_MODULE(calculatorpy, m)
-{
+PYBIND11_MODULE(calculatorpy, m) {
     m.doc() = "Docs for calculator python bindings";
 
     generate_calculator_bindings(m);

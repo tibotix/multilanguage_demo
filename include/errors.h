@@ -3,13 +3,11 @@
 
 #include <stdexcept>
 
-namespace Calculator
-{
-    class CalcError : public std::runtime_error
-    {
-    public:
-        explicit CalcError(const char *message) : std::runtime_error(message) {}
-    };
+namespace Calculator {
+class CalcError : public std::runtime_error {
+public:
+    explicit CalcError(const char* message) : std::runtime_error(message) {}
+};
 }
 
 #endif

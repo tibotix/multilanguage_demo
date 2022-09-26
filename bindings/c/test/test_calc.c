@@ -1,9 +1,8 @@
 #include <stdio.h>
 #include "calc_c.h"
 
-int main(int argc, char **argv)
-{
-    calculator_t *c = calculator_create(4);
+int main(int argc, char** argv) {
+    calculator_t* c = calculator_create(4);
     calculator_add(c, 6);
     calculator_mul(c, 5);
     calculator_div(c, 2);

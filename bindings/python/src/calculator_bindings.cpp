@@ -4,12 +4,12 @@
 
 #include "calc.h"
 
-void generate_calculator_bindings(pybind11::module_ &m)
-{
+void generate_calculator_bindings(pybind11::module_& m) {
     auto calc = pybind11::class_<Calculator::Calculator>(m, "Calculator");
     calc.def(pybind11::init<double>());
-    calc.def("__copy__", [](Calculator::Calculator &self)
-             { return Calculator::Calculator(self); });
+    calc.def("__copy__", [](Calculator::Calculator& self) {
+        return Calculator::Calculator(self);
+    });
     calc.def("add", &Calculator::Calculator::add);
     calc.def("sub", &Calculator::Calculator::sub);
     calc.def("mul", &Calculator::Calculator::mul);
