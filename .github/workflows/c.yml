@@ -19,7 +19,7 @@ jobs:
         run: cmake -Bbuild -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON $GITHUB_WORKSPACE/bindings/c
       - name: Build c bindings
         working-directory: ${{runner.workspace}}/build
-        run: cmake --build build
+        run: cmake --build .
       - name: Run tests
         working-directory: ${{runner.workspace}}/build
         run: ctest
