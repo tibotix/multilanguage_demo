@@ -1,0 +1,36 @@
+name: go bindings test
+
+on:
+  pull_request:
+    branches: ["master", "release", "test-me*", "go-bindings"]
+  push:
+    branches: ["master", "release", "test-me*"]
+
+
+jobs:
+  go_test:
+    strategy:
+      matrix:
+        go: ["1.18"]
+        os: [ubuntu-latest]
+
+    runs-on: ${{matrix.os}}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Setup Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: ${{matrix.go}}
+      - name: Build required c bindings
+        working-directory: ${{runner.workspace}}
+        run: |
+          cmake -Bbuild -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON $GITHUB_WORKSPACE
+          cmake --build build
+          cmake --install build
+      - name: Run tests
+        working-directory: bindings/go
+        run: go test -coverpkg=.
+
+

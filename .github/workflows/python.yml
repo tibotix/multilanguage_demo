@@ -1,4 +1,4 @@
-name: calculator python bindings test
+name: python bindings test
 
 on:
   pull_request:
