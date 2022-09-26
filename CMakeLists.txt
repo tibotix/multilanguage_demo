@@ -11,7 +11,9 @@ if(WIN32)
     set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
 endif()
 
-file(GLOB calculator_sources "src/*.cpp")
+set(calculator_sources
+    src/calc.cpp
+)
 # Note: To build a shared library, use -DBUILD_SHARED_LIBS=ON when configuring.
 add_library(calculator ${calculator_sources})
 target_include_directories(calculator PUBLIC include)
@@ -28,8 +30,11 @@ install(TARGETS calculator
 
 if(BUILD_TESTING AND (PROJECT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR))
     include(CTest)
-    file(GLOB test_sources "tests/test_*.cpp")
-    add_executable(calculator_test tests/main.cpp ${test_sources})
+    set(calculator_test_sources
+        tests/main.cpp
+        tests/test_calculator.cpp 
+    )
+    add_executable(calculator_test ${calculator_test_sources})
     target_include_directories(calculator_test PUBLIC include)
     target_include_directories(calculator_test PRIVATE extern/catch2/include)
     target_link_libraries(calculator_test PRIVATE calculator)

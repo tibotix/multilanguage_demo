@@ -1,0 +1,25 @@
+name: c bindings test
+
+on:
+  pull_request:
+    branches: ["master", "release", "test-me*", "c-bindings"]
+  push:
+    branches: ["master", "release", "test-me*"]
+
+
+jobs:
+  c_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Configure build
+        working-directory: ${{runner.workspace}}
+        run: cmake -Bbuild -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON $GITHUB_WORKSPACE/bindings/c
+      - name: Build c bindings
+        working-directory: ${{runner.workspace}}/build
+        run: cmake --build build
+      - name: Run tests
+        working-directory: ${{runner.workspace}}/build
+        run: ctest
