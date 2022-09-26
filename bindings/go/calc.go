@@ -19,30 +19,30 @@ func Calculator_create(init_value float64) *Calculator {
 	return &Calculator{_c: c}
 }
 
-func (c *Calculator) add(a float64) *Calculator {
+func (c *Calculator) Add(a float64) *Calculator {
 	C.calculator_add(c._c, C.double(a))
 	return c
 }
 
-func (c *Calculator) sub(a float64) *Calculator {
+func (c *Calculator) Sub(a float64) *Calculator {
 	C.calculator_sub(c._c, C.double(a))
 	return c
 }
 
-func (c *Calculator) mul(a float64) *Calculator {
+func (c *Calculator) Mul(a float64) *Calculator {
 	C.calculator_mul(c._c, C.double(a))
 	return c
 }
 
-func (c *Calculator) div(a float64) *Calculator {
+func (c *Calculator) Div(a float64) *Calculator {
 	C.calculator_div(c._c, C.double(a))
 	return c
 }
 
-func (c *Calculator) result() float64 {
+func (c *Calculator) Result() float64 {
 	return float64(C.calculator_result(c._c))
 }
 
-func (c *Calculator) destroy() {
+func (c *Calculator) Destroy() {
 	C.calculator_destroy(c._c)
 }
