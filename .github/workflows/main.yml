@@ -49,14 +49,13 @@ jobs:
           submodules: recursive
       - name: Configure build
         working-directory: ${{runner.workspace}}
-        run: | 
-          cmake -Bbuild -DCMAKE_BUILD_TYPE=Debug \
-          -DBUILD_SHARED_LIBS=ON -DBUILD_TESTING=ON \
-          -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=TRUE \
-          -DCMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG=$env:GITHUB_WORKSPACE/build/Debug \
-          -DCMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG=$env:GITHUB_WORKSPACE/build/Debug \
-          -DCMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG=$env:GITHUB_WORKSPACE/build/Debug \
-          $env:GITHUB_WORKSPACE
+        run: cmake -Bbuild -DCMAKE_BUILD_TYPE=Debug \
+            -DBUILD_SHARED_LIBS=ON -DBUILD_TESTING=ON \
+            -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=TRUE \
+            -DCMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG=$env:GITHUB_WORKSPACE/build/Debug \
+            -DCMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG=$env:GITHUB_WORKSPACE/build/Debug \
+            -DCMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG=$env:GITHUB_WORKSPACE/build/Debug \
+            $env:GITHUB_WORKSPACE
       - name: Build lib + tests
         working-directory: ${{runner.workspace}}/build
         run: cmake --build . --config Debug

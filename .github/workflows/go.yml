@@ -29,6 +29,8 @@ jobs:
           cmake -Bbuild -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON $GITHUB_WORKSPACE/bindings/c
           cmake --build build
           sudo cmake --install build
+      - name: Update ldconfig
+        run: sudo ldconfig
       - name: Run tests
         working-directory: bindings/go
         run: go test -coverpkg=.
