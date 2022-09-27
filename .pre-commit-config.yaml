@@ -8,7 +8,7 @@ repos:
         args: ["--style=file", "-i"]
       - id: clang-tidy
         stages: [commit]
-        args: [-header-filter="include/*", -checks="clang-analyzer-*,cppcoreguidelines-*,modernize-*,readability-*,performance-*", --, "-Iinclude/"]
+        args: [--, -Iinclude/, -Ibindings/c/include, -Iextern/catch2/include]
       - id: cppcheck
         stages: [commit]
-        args: ["-q", "-Iinclude/", "--error-exitcode=1", "--enable=all", "--suppress=unmatchedSuppression", "--suppress=missingIncludeSystem", "--suppress=unusedFunction", "--std=c++14", "--max-ctu-depth=3"]
+        args: ["-q", "--suppress=*:extern/*", "--std=c++14", "-Iextern/catch2/include/", "-Ibindings/c/include/", "-Iinclude/", "--enable=all", "--suppress=unmatchedSuppression", "--suppress=missingIncludeSystem", "--suppress=unusedFunction", "--suppress=toomanyconfigs", "--max-ctu-depth=3", "--error-exitcode=1"]

@@ -1,0 +1,3 @@
+Checks: '-checks=clang-analyzer-*,cppcoreguidelines-*,modernize-*,performance-*'
+HeaderFilterRegex: '^(?!extern)(.*?)include\/(.*)'
+UseColor: true

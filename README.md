@@ -9,3 +9,4 @@ Branches:
 - go-bindings
 - c-bindings
   
+Use `pre-commit install` to install the pre-commit hooks

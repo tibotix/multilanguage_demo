@@ -1,7 +1,7 @@
-#include "calc.h"
-#include "errors.h"
+#include "calc.hpp"
+#include "errors.hpp"
 
-Calculator::Calculator& Calculator::Calculator::add(double a) {
+Calculator::Calculator& Calculator::Calculator::add(const double& a) {
     m_result = m_result + a;
     return *this;
 }

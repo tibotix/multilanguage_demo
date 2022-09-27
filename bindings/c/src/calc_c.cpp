@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <new>
-#include "calc.h"
-#include "errors.h"
+#include "calc.hpp"
+#include "errors.hpp"
 #include "calc_c.h"
 #include "ffi_utils.h"
 
@@ -10,7 +10,7 @@ struct _CalculatorWrapper {
 };
 
 calculator_t* calculator_create(double init_value) {
-    calculator_t* c = (calculator_t*)malloc(sizeof(*c));
+    calculator_t* c = static_cast<calculator_t*>(malloc(sizeof(*c)));
     Calculator::Calculator* obj = new (std::nothrow) Calculator::Calculator(init_value);
     c->obj = obj;
     return c;

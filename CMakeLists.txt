@@ -19,8 +19,8 @@ add_library(calculator ${calculator_sources})
 target_include_directories(calculator PUBLIC include)
 set_property(
     TARGET calculator PROPERTY PUBLIC_HEADER
-    "include/calc.h"
-    "include/errors.h"    
+    "include/calc.hpp"
+    "include/errors.hpp"    
 )
 install(TARGETS calculator 
         RUNTIME DESTINATION bin COMPONENT Runtime
