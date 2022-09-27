@@ -11,4 +11,14 @@ repos:
         args: [--, -Iinclude/, -Ibindings/c/include, -Iextern/catch2/include, -Ibindings/python/extern/pybind11/include]
       - id: cppcheck
         stages: [commit]
-        args: ["-q", "--suppress=*:bindings/python/extern/*", "--suppress=*:extern/*", "--std=c++14", "-Ibindings/python/extern/pybind11/include", "-Iextern/catch2/include/", "-Ibindings/c/include/", "-Iinclude/", "--enable=all", "--suppress=unmatchedSuppression", "--suppress=missingIncludeSystem", "--suppress=unusedFunction", "--suppress=toomanyconfigs", "--max-ctu-depth=3", "--error-exitcode=1"]
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.1.0
+    hooks:
+    - id: codespell
+      exclude: COMMIT_EDITMSG
+      stages: [commit]
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.1.0
+    hooks:
+    - id: detect-secrets
+      stages: [commit]
