@@ -1,4 +1,4 @@
-#include "calc.h"
+#include "calc.hpp"
 
 #include <catch2/catch.hpp>
 
