@@ -1,0 +1,14 @@
+fail_fast: false
+repos:
+  - repo: https://github.com/pocc/pre-commit-hooks
+    rev: v1.3.5
+    hooks:
+      - id: clang-format
+        stages: [commit]
+        args: ["--style=file", "-i"]
+      - id: clang-tidy
+        stages: [commit]
+        args: [-header-filter="include/*", -checks="clang-analyzer-*,cppcoreguidelines-*,modernize-*,readability-*,performance-*", --, "-Iinclude/"]
+      - id: cppcheck
+        stages: [commit]
+        args: ["-q", "-Iinclude/", "--error-exitcode=1", "--enable=all", "--suppress=unmatchedSuppression", "--suppress=missingIncludeSystem", "--suppress=unusedFunction", "--std=c++14", "--max-ctu-depth=3"]
