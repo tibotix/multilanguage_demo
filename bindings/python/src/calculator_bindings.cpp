@@ -2,7 +2,7 @@
 
 #include <pybind11/pybind11.h>
 
-#include "calc.h"
+#include "calc.hpp"
 
 void generate_calculator_bindings(pybind11::module_& m) {
     auto calc = pybind11::class_<Calculator::Calculator>(m, "Calculator");
